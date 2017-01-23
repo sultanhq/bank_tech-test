@@ -27,7 +27,6 @@ class Account
     header = "date       || credit || debit   || balance\n"
     output += header
     transactions = ""
-
     ledger.each do |transaction|
       if transaction.value > 0
         transactions += "#{transaction.date} || #{('%.02f' % transaction.value).to_s.ljust(6)}||         || #{'%.02f' % transaction.account_balance}\n"
