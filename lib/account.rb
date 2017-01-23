@@ -9,8 +9,8 @@ class Account
   attr_reader :balance, :ledger
 
   def deposit(amount)
-    add_to_ledger(amount)
     @balance += amount
+    add_to_ledger(amount)
   end
 
   def withdraw(amount)
@@ -22,9 +22,26 @@ class Account
     end
   end
 
+  def statement
+    output = ""
+    header = "date       || credit || debit   || balance\n"
+    output += header
+    transactions = ""
+
+    ledger.each do |transaction|
+      if transaction.value > 0
+        transactions += "#{transaction.date} || #{('%.02f' % transaction.value).to_s.ljust(6)}||         || #{'%.02f' % transaction.account_balance}\n"
+      else
+        transactions += "#{transaction.date} ||        || #{('%.02f' % transaction.value.abs).to_s.ljust(8)}|| #{'%.02f' % transaction.account_balance}\n"
+      end
+    end
+
+    output += transactions
+  end
+
   private
 
   def add_to_ledger(amount)
-    ledger.push(Transaction.new(amount))
+    ledger.unshift(Transaction.new(amount, @balance))
   end
 end

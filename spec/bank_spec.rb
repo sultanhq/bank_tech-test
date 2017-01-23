@@ -30,13 +30,12 @@ describe 'Bank' do
 
     it 'expects an account not to withdraw more than the account balance' do
       @account.deposit(500)
-      message = "Sorry, you cannot withdraw more than account balance (currently 500)"
-      expect{@account.withdraw(1000)}.to raise_error(message)
+      message = 'Sorry, you cannot withdraw more than account balance (currently 500)'
+      expect { @account.withdraw(1000) }.to raise_error(message)
     end
   end
 
   describe 'statement' do
-
     before(:each) do
       @accoutn = Account.new
       @account.deposit(1000)
@@ -47,7 +46,12 @@ describe 'Bank' do
       expect(@account.ledger.length).to eq 2
     end
 
+    it 'expects an accoutn to have a statement' do
+      todays_date = Time.now.strftime('%d/%m/%Y')
+      expect(@account.statement).to eq("date       || credit || debit   || balance
+23/01/2017 ||        || 500.00  || 500.00
+23/01/2017 || 1000.00||         || 1000.00
+")
+    end
   end
-
-
 end
