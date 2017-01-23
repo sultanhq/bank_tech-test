@@ -2,12 +2,10 @@ require 'spec_helper'
 require './lib/transaction.rb'
 
 describe 'Transaction' do
-  before(:each) do
-    @transaction = Transaction.new
-  end
-
-  it 'expects a transaction to exist' do
-    expect(@transaction).to be_an_instance_of Transaction
+  
+  it 'expects a transaction to store a positive value on instantiation' do
+    @transaction = Transaction.new(500)
+    expect(@transaction.value).to eq 500
   end
 
 end
