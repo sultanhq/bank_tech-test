@@ -25,6 +25,12 @@ describe 'Bank' do
       @account.withdraw(500)
       expect(@account.balance).to eq 500
     end
+
+    it 'expects an account not to withdraw more than the account balance' do
+      @account.deposit(500)
+      message = "Sorry, you cannot withdraw more than account balance (currently 500)"
+      expect{@account.withdraw(1000)}.to raise_error(message)
+    end
   end
 
 end
