@@ -20,6 +20,12 @@ describe 'Bank' do
       expect(@account.balance).to eq 1000
     end
 
+    it 'expects an account to accept multiple deposits' do
+      @account.deposit(1000)
+      @account.deposit(2000)
+      expect(@account.balance).to eq 3000
+    end
+
     it 'expects an account to be able to withdraw funds' do
       @account.deposit(1000)
       @account.withdraw(500)
