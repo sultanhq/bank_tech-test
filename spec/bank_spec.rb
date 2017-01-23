@@ -15,9 +15,15 @@ describe 'Bank' do
       expect(@account.balance).to eq 0
     end
 
-    it 'expect an account to accept deposits' do
+    it 'expect an account to accept deposits funds' do
       @account.deposit(1000)
       expect(@account.balance).to eq 1000
+    end
+
+    it 'expects an account to be able to withdraw funds' do
+      @account.deposit(1000)
+      @account.withdraw(500)
+      expect(@account.balance).to eq 500
     end
   end
 
