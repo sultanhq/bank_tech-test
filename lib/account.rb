@@ -9,14 +9,14 @@ class Account
   attr_reader :balance, :ledger
 
   def deposit(amount)
-    @balance += amount
+    @balance += amount.abs
     add_to_ledger(amount)
   end
 
   def withdraw(amount)
-    if @balance > amount
-      @balance -= amount
-      add_to_ledger(-amount)
+    if @balance > amount.abs
+      @balance -= amount.abs
+      add_to_ledger(-amount.abs)
     else
       raise "Sorry, you cannot withdraw more than account balance (currently #{@balance})"
     end
