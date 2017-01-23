@@ -2,14 +2,20 @@ require 'spec_helper'
 require './lib/transaction.rb'
 
 describe 'Transaction' do
+  before (:each) do
+    @transaction = Transaction.new(500)
+  end
+
   it 'expects a transaction to be able to store a positive value on instantiation' do
     @transaction = Transaction.new(500)
     expect(@transaction.value).to eq 500
   end
 
-  it 'expects a transaction to be able to store a negative value on instantiation' do
-    @transaction = Transaction.new(-500)
-    expect(@transaction.value).to eq -500
+  describe ' negative transaction' do
+    it 'expects a transaction to be able to store a negative value on instantiation' do
+      @transaction = Transaction.new(-500)
+      expect(@transaction.value).to eq -500
+    end
   end
 
   it 'expects a tranaction to be able to store a date on instantiation' do

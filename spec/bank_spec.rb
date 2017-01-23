@@ -39,4 +39,19 @@ describe 'Bank' do
     end
   end
 
+  describe 'statement' do
+
+    before(:each) do
+      @accoutn = Account.new
+      @account.deposit(1000)
+      @account.withdraw(500)
+    end
+
+    it 'expects an account to have a ledger' do
+      expect(@account.ledger.length).to eq 2
+    end
+
+  end
+
+
 end
